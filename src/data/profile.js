@@ -5,9 +5,9 @@ export const profile = {
   fullName: 'Achmad Haikal Maali',
   photo: '/profile.jpg', // put your photo in /public/profile.jpg
   cv: '/cv.pdf', // put your CV in /public/cv.pdf
-  email: '', // e.g. 'haikal@email.com'
+  email: 'achaikal02@gmail.com', // e.g. 'haikal@email.com'
   github: 'https://github.com/Achaikal02',
-  linkedin: '', // e.g. 'https://www.linkedin.com/in/your-handle'
+  linkedin: 'https://www.linkedin.com/in/achmadhaikalmaali/', // e.g. 'https://www.linkedin.com/in/your-handle'
   location: 'Shah Alam, Malaysia',
   availability: 'Available for ML/AI internship · from March 2027',
 
