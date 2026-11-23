@@ -138,9 +138,16 @@ export default function Gallery({ items = [] }) {
               transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img src={current.src} alt={current.caption || 'Screenshot'} />
+              {current.full ? (
+                <div className="lightbox__scroll" tabIndex={0}>
+                  <img src={current.full} alt={current.caption || 'Full page screenshot'} />
+                </div>
+              ) : (
+                <img src={current.src} alt={current.caption || 'Screenshot'} />
+              )}
               <figcaption>
                 {current.caption}
+                {current.full && <em>Scroll to see the full page</em>}
                 <span>
                   {open + 1} / {items.length}
                 </span>

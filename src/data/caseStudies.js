@@ -10,13 +10,18 @@
 //   learnings   { title, items: [...] }
 //   note        small grey footnote (limitations, disclaimers)
 //   stack       tech chips
-//   gallery     screenshots: [{ src: '/screenshots/<id>/1.png', caption: '...' }]
+//   gallery     screenshots: [{ src: '/screenshots/<id>/1.png', full: '(optional) tall full-page image', caption: '...' }]
 //               put the images in public/screenshots/<id>/  (PNG/JPG/WebP, ~1600px wide)
 
 export const caseStudies = {
   valora: {
     gallery: [
-      // { src: '/screenshots/valora/1.png', caption: 'Describe what this screen shows' },
+      { src: '/screenshots/valora/1-home.webp', full: '/screenshots/valora/1-home-full.webp', caption: 'Home — market at a glance and price map by area' },
+      { src: '/screenshots/valora/2-new-valuation.webp', full: '/screenshots/valora/2-new-valuation-full.webp', caption: 'New valuation — pin the house on the map, then fill in four short steps' },
+      { src: '/screenshots/valora/3-result.webp', full: '/screenshots/valora/3-result-full.webp', caption: 'Result — estimate, 50% / 80% price range and the factors behind it' },
+      { src: '/screenshots/valora/4-pdf-report.webp', full: '/screenshots/valora/4-pdf-report-full.webp', caption: '3-page PDF valuation report, ready to print' },
+      { src: '/screenshots/valora/5-market.webp', full: '/screenshots/valora/5-market-full.webp', caption: 'Market explorer — median price per m² for 382 areas (Indonesian UI)' },
+      { src: '/screenshots/valora/6-about-model.webp', full: '/screenshots/valora/6-about-model-full.webp', caption: 'About the model — how Valora works, explained without jargon' },
     ],
     kicker: 'Case study · Final-year thesis',
     summary:
