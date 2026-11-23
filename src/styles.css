@@ -70,9 +70,12 @@ img { display: block; max-width: 100%; }
 .nav__brand { font-size: 17px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 8px; }
 .nav__brand:hover { text-decoration: none; }
 .nav__logo { border-radius: 6px; }
+.nav__right { display: flex; align-items: center; gap: 24px; }
 .nav__links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; font-size: 13px; }
+.nav__toggle { display: none; }
 .nav__links a { color: var(--ink); padding: 12px 0; }
-.nav__links .nav__cta { background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 980px; font-weight: 500; }
+.nav__cta { font-size: 13px; background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 980px; font-weight: 500; }
+.nav__cta:hover { text-decoration: none; background: #0071e3; }
 
 /* Hero */
 .hero { max-width: 1024px; margin: 0 auto; padding: 120px 22px 96px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -188,11 +191,7 @@ a.chip:hover { text-decoration: none; background: #e8e8ed; }
 .footer { border-top: 1px solid var(--line); background: var(--grey); }
 .footer__inner { max-width: 1024px; margin: 0 auto; padding: 20px 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--muted); }
 
-@media (max-width: 600px) {
-  .section { padding: 80px 0; }
-  .stat__value { font-size: 44px; }
-  .profile__badge { right: -8px; }
-}
+
 
 /* Resume */
 .resume { padding: 64px 0 48px; }
@@ -214,3 +213,87 @@ a.chip:hover { text-decoration: none; background: #e8e8ed; }
 .cs-list li { font-size: 19px; line-height: 1.55; padding-left: 8px; }
 .cs-list li::marker { color: var(--accent); font-weight: 600; }
 .cs-note { margin-top: 40px; max-width: 760px; font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+
+/* ---------- Phone & small tablet ---------- */
+@media (max-width: 734px) {
+  .container, .hero, .nav__inner, .footer__inner { padding-left: 20px; padding-right: 20px; }
+  .section { padding: 72px 0; }
+  #work.section { padding: 56px 0; }
+
+  /* Nav: logo + Résumé + menu button; links drop down */
+  .nav__inner { flex-wrap: nowrap; min-height: 48px; }
+  .nav__right { gap: 12px; }
+  .nav__toggle { display: inline-flex; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 44px; margin-right: -10px; padding: 0 12px; background: none; border: 0; cursor: pointer; }
+  .nav__toggle span { display: block; height: 1.5px; background: var(--ink); border-radius: 2px; transition: transform 0.3s var(--ease); }
+  .nav--open .nav__toggle span:first-child { transform: translateY(3.75px) rotate(45deg); }
+  .nav--open .nav__toggle span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
+  .nav__links { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 20px; background: #fbfbfd; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06); border-bottom: 1px solid var(--line); font-size: 24px; font-weight: 600; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity 0.25s, transform 0.25s var(--ease), visibility 0.25s; }
+  .nav--open .nav__links { opacity: 1; visibility: visible; transform: none; }
+  .nav__links a { padding: 12px 0; letter-spacing: -0.02em; }
+
+  /* Type scale */
+  .h2 { font-size: 32px; }
+  .hero { padding-top: 72px; padding-bottom: 64px; gap: 16px; }
+  .hero__eyebrow { font-size: 15px; }
+  .hero__title { font-size: 38px; line-height: 1.08; }
+  .hero__intro { font-size: 18px; }
+  .hero__edu { margin-top: 12px; font-size: 13px; line-height: 1.5; }
+  .btn { padding: 12px 22px; }
+  .project__headline { font-size: 34px; line-height: 1.1; }
+  .project__name { font-size: 21px; }
+  .project__video { margin-top: 24px; }
+  .eyebrow { font-size: 12px; }
+  .link { font-size: 17px; }
+  .contact__title { font-size: 38px; }
+  .contact__sub { font-size: 18px; }
+
+  /* Profile */
+  .profile { gap: 28px; }
+  .profile__photo { width: 184px; height: 184px; }
+  .profile__img { inset: 10px; }
+  .profile__badge { right: -30px; bottom: 8px; font-size: 12px; padding: 7px 12px; }
+  .profile__statement { font-size: 22px; }
+  .card { padding: 22px; }
+
+  /* Video */
+  .video { border-radius: 16px; }
+  .video__play { width: 60px; height: 60px; }
+  .video__play svg { width: 22px; height: 22px; }
+  .video__label { font-size: 13px; }
+
+  /* Stats: three across, smaller */
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; margin-top: 40px; }
+  .stat__value, .stats--large .stat__value { font-size: 28px; letter-spacing: -0.02em; }
+  .stat__label, .stats--large .stat__label { font-size: 12px; line-height: 1.3; }
+
+  .highlights { gap: 24px; margin-top: 40px; }
+  .highlights--ruled { padding-top: 32px; }
+  .highlight p, .skill p { font-size: 16px; }
+  .skills { margin-top: 32px; gap: 28px; }
+
+  /* Case study */
+  .cs-hero__title { font-size: 44px; }
+  .cs-hero__subtitle { font-size: 17px; }
+  .cs-hero__summary { font-size: 18px; }
+  .cs-video { margin-top: 40px; }
+  .cs-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; padding-top: 48px; padding-bottom: 48px; }
+  .cs-text p, .cs-intro p { font-size: 18px; }
+  .card--step { padding: 26px; }
+  .cs-table__row { flex-wrap: nowrap; align-items: baseline; font-size: 15px; }
+  .cs-table__row strong { white-space: nowrap; }
+  .cs-list li { font-size: 17px; }
+  .cs-nav { flex-direction: column; gap: 4px; }
+
+  /* Résumé: embedded PDFs don’t work on phones, show a card instead */
+  .resume { padding-top: 40px; }
+  .resume__head { display: none; }
+  .resume__frame { display: none; }
+  .resume .resume__mobile { display: block; margin-bottom: 24px; }
+}
+
+.resume__mobile { display: none; }
+.resume__card { background: #fff; border-radius: 22px; padding: 40px 24px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.resume__card img { border-radius: 12px; margin-bottom: 8px; }
+.resume__card-title { font-size: 21px; font-weight: 700; letter-spacing: -0.02em; }
+.resume__card .btn { margin-top: 12px; }

@@ -19,6 +19,17 @@ export default function Resume() {
         </div>
       </div>
 
+      <div className="container resume__mobile">
+        <div className="resume__card">
+          <img src="/logo.svg" alt="" width="56" height="56" />
+          <p className="resume__card-title">{profile.fullName} — Résumé</p>
+          <p className="muted">PDF · opens in your phone’s viewer</p>
+          <a href={profile.cv} className="btn btn--primary" target="_blank" rel="noreferrer">
+            View résumé
+          </a>
+        </div>
+      </div>
+
       <div className="resume__frame">
         <object data={`${profile.cv}#view=FitH`} type="application/pdf" aria-label="Résumé PDF">
           <div className="resume__fallback">
