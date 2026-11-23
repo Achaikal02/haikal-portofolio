@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import VideoFrame from '../components/VideoFrame.jsx'
+import Gallery from '../components/Gallery.jsx'
 import { projects } from '../data/projects.js'
 import { caseStudies } from '../data/caseStudies.js'
 import NotFound from './NotFound.jsx'
@@ -80,6 +81,20 @@ export default function CaseStudy() {
               ))}
             </div>
           </div>
+        </section>
+      )}
+
+      {cs.gallery?.length > 0 && (
+        <section className="section section--white gallery-section">
+          <div className="container">
+            <Reveal className="cs-intro">
+              <h2 className="h2">A closer look.</h2>
+              <p>Screenshots from the live product. Tap any image to enlarge.</p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <Gallery items={cs.gallery} />
+          </Reveal>
         </section>
       )}
 

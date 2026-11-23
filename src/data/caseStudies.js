@@ -10,9 +10,14 @@
 //   learnings   { title, items: [...] }
 //   note        small grey footnote (limitations, disclaimers)
 //   stack       tech chips
+//   gallery     screenshots: [{ src: '/screenshots/<id>/1.png', caption: '...' }]
+//               put the images in public/screenshots/<id>/  (PNG/JPG/WebP, ~1600px wide)
 
 export const caseStudies = {
   valora: {
+    gallery: [
+      // { src: '/screenshots/valora/1.png', caption: 'Describe what this screen shows' },
+    ],
     kicker: 'Case study · Final-year thesis',
     summary:
       'Valora is a web app that estimates house prices in Greater Jakarta (Jabodetabek) using an XGBoost model. It is built for property appraisers who need a quick, explainable second opinion.',
@@ -71,6 +76,11 @@ export const caseStudies = {
   },
 
   yudhistira: {
+    gallery: [
+      { src: '/screenshots/yudhistira/1.png', caption: 'Dashboard 1' },
+      { src: '/screenshots/yudhistira/2.png', caption: 'Dashboard 2' },
+      { src: '/screenshots/yudhistira/3.png', caption: 'Business Impact' },
+    ],
     kicker: 'Case study · Personal project',
     summary:
       'Yudhistira is a real-time fraud detection engine that decides ALLOW, REVIEW or BLOCK for each payment based on expected cost. I built it to practice end-to-end ML engineering, from the model to a live pipeline and the UI an analyst uses.',
@@ -135,6 +145,9 @@ export const caseStudies = {
   },
 
   churn: {
+    gallery: [
+      // { src: '/screenshots/churn/1.png', caption: 'Describe what this screen shows' },
+    ],
     kicker: 'Case study · CTRL_V_Architect, Politeknik Negeri Jakarta',
     summary:
       'A SaaS platform that predicts which customers will churn, explains why with SHAP, and lets the business ask a chatbot about it in plain language.',
@@ -176,6 +189,9 @@ export const caseStudies = {
   },
 
   keeva: {
+    gallery: [
+      // { src: '/screenshots/keeva/1.png', caption: 'Describe what this screen shows' },
+    ],
     kicker: 'Case study · CTRL_V_Architect, Politeknik Negeri Jakarta',
     summary:
       'A smart classroom system that watches the camera feed and detects student behavior in real time, so a lecturer can see how engaged the room really is.',
