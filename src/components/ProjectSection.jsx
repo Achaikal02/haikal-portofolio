@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal.jsx'
 import VideoFrame from './VideoFrame.jsx'
+import { caseStudies } from '../data/caseStudies.js'
 
 export default function ProjectSection({ project, index }) {
   const { id, eyebrow, headline, name, subtitle, links = [], video = {}, stats, highlights = [], caseStudy } = project
   const theme = project.theme === 'dark' ? 'dark' : index % 2 === 0 ? 'grey' : 'white'
   const number = String(index + 1).padStart(2, '0')
   const visibleLinks = links.filter((l) => l.href)
+  const hasCaseStudy = Boolean(caseStudies[id] || caseStudy)
 
   return (
     <section id={id} className={`section section--${theme} project`}>
@@ -18,9 +20,9 @@ export default function ProjectSection({ project, index }) {
           <h2 className="project__headline">{headline}</h2>
           <p className="project__name">{name}</p>
           {subtitle && <p className="project__subtitle">{subtitle}</p>}
-          {(caseStudy || visibleLinks.length > 0) && (
+          {(hasCaseStudy || visibleLinks.length > 0) && (
             <div className="link-row">
-              {caseStudy && (
+              {hasCaseStudy && (
                 <Link to={`/work/${id}`} className="link">
                   Read the case study ›
                 </Link>

@@ -201,3 +201,16 @@ a.chip:hover { text-decoration: none; background: #e8e8ed; }
 .resume__frame { max-width: 1024px; height: 85vh; margin: 0 auto 32px; padding: 0 22px; }
 .resume__frame object { width: 100%; height: 100%; border: 0; border-radius: 18px; background: #fff; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); }
 .resume__fallback { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #fff; border-radius: 18px; color: var(--muted); }
+
+/* Case study extras */
+.cs-hero__subtitle { font-size: 21px; font-weight: 600; color: var(--dark-muted); }
+.cs-video { max-width: 1004px; margin-top: 64px; }
+.cs-text { display: flex; flex-direction: column; gap: 20px; }
+.cs-text p { max-width: 760px; font-size: 21px; line-height: 1.55; color: var(--muted); }
+.cs-table { max-width: 760px; border-top: 1px solid var(--line); }
+.cs-table__row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 20px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
+.cs-table__row span { color: var(--muted); }
+.cs-list { max-width: 760px; margin: 40px 0 0; padding-left: 24px; display: flex; flex-direction: column; gap: 20px; }
+.cs-list li { font-size: 19px; line-height: 1.55; padding-left: 8px; }
+.cs-list li::marker { color: var(--accent); font-weight: 600; }
+.cs-note { margin-top: 40px; max-width: 760px; font-size: 14px; line-height: 1.5; color: var(--muted); }
