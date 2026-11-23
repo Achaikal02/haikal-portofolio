@@ -12,7 +12,7 @@ export const profile = {
   availability: 'Available for ML/AI internship · from March 2027',
 
   hero: {
-    title: ['My title says AI Engineer.', 'But honestly, I’ll just do whatever you pay me to do.'],
+    title: ['My title says AI Engineer.', 'But honestly, I do whatever my boss tells me to do..'],
     intro:
       'I’m Haikal — a Computer Science student building machine learning systems end to end, from EDA and modeling to APIs people can actually use.',
     education:
