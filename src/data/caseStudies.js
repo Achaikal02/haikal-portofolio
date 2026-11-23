@@ -15,92 +15,123 @@ export const caseStudies = {
   valora: {
     kicker: 'Case study · Final-year thesis',
     summary:
-      'A web app that estimates the price of a landed house anywhere in Greater Jakarta — with a price range, the reasons behind it, and comparable listings.',
+      'Valora is a web app that estimates house prices in Greater Jakarta (Jabodetabek) using an XGBoost model. It is built for property appraisers who need a quick, explainable second opinion.',
     facts: [
-      { label: 'Type', value: 'Final-year thesis', detail: 'Politeknik Negeri Jakarta' },
-      { label: 'Data', value: 'Rumah123 + OSM', detail: 'Listing prices and OpenStreetMap location data' },
+      { label: 'Role', value: 'Solo builder', detail: 'Data prep, modeling, API, web app and deployment' },
+      { label: 'Data', value: 'Rumah123 listings', detail: 'From Kaggle, enriched with OpenStreetMap. Evaluated on 685 test houses' },
       { label: 'Method', value: 'CRISP-DM', detail: 'Plus SDLC Waterfall for the web system' },
-      { label: 'Status', value: 'Live', detail: 'valorappraisal.tech' },
+      { label: 'Status', value: 'Live', detail: 'valorappraisal.tech · user testing (SUS) completed' },
     ],
     problem: {
       title: 'The problem.',
-      text: 'Knowing what a house is worth usually means hiring an appraiser or guessing from scattered listings. Valora gives buyers, sellers, agents and lenders a fast, explainable first estimate — before a formal valuation, not instead of one.',
+      text: 'Manual property valuation is slow, and location is hard to turn into numbers a model can use. Most existing studies stop at a notebook and never reach real users.',
     },
-    approachIntro: 'A tabular model, a map-first interface, and every number explained.',
+    approachIntro: 'From raw listings to a live app in four steps.',
     approach: [
       {
-        title: 'Data and features',
-        text: 'Rumah123 listings for landed houses across Jabodetabek, enriched with OpenStreetMap location data and grouped into 382 areas.',
+        title: 'Location feature engineering',
+        text: 'I turned raw coordinates into richer signals: distance to 8 landmarks, rotated coordinates, area descriptors and 8 OpenStreetMap point-of-interest categories, then kept the strongest location setup.',
       },
       {
-        title: 'XGBoost regression',
-        text: 'A gradient-boosted tree model (gbtree) trained on house specifications and location, evaluated on a held-out set of 685 houses.',
+        title: 'Model and tuning',
+        text: 'I trained XGBoost (gbtree) and tuned it with Optuna. On the test set it reached 20.17% MAPE and R² 0.838.',
       },
       {
-        title: 'Built for people',
-        text: 'Pin a house on the map, enter its specs, and get a point estimate, a price range, the main value drivers and comparable listings — in English or Indonesian.',
+        title: 'Honest uncertainty',
+        text: 'Each estimate comes with 50% and 80% price ranges, calibrated per region. SHAP shows the top 5 factors behind each price in plain language.',
+      },
+      {
+        title: 'Production app',
+        text: 'A Flask API on Railway serves the model, and a Next.js app on Vercel handles the map-based form, login and history in Supabase. Users can compare up to 3 estimates and download a 3-page PDF report.',
       },
     ],
+    table: {
+      title: 'Model performance.',
+      intro: 'Final XGBoost model with the best location features, on a test set of 685 houses.',
+      rows: [
+        ['MAPE', '20.17% (“reasonable” by Lewis, 1982)'],
+        ['Median error (APE)', '14.82%'],
+        ['R²', '0.838'],
+        ['Predictions within ±20%', '62.8%'],
+      ],
+    },
     learnings: {
       title: 'What I learned.',
       items: [
-        'A simpler tabular model beat my original multi-modal/NLP plan once I weighed accuracy against the time to ship a usable system.',
-        'Real appraisal data is messy: an early attempt with official appraisal files hit small samples, inconsistent coordinates and merged spreadsheet headers.',
-        'The contribution that matters most is access — putting a model behind a web app non-technical people can actually use.',
+        'Missing data can carry meaning. Listings without electricity info were priced higher, so leaving it empty raised estimates by about 9.6% — I made the field required.',
+        'Deployment brings its own bugs. Running XGBoost under multiple preloaded Gunicorn workers caused 502 errors, so I switched to one worker with threads.',
+        'Scope beats ambition. I dropped an NLP/multimodal idea and an LLM chatbot to ship a solid tabular model that people can actually use.',
       ],
     },
-    note: 'Valora is a research prototype. It uses asking prices, does not inspect physical condition or legal status, and is not an official appraisal report.',
-    stack: ['Python', 'XGBoost', 'OpenStreetMap', 'Flask', 'Next.js', 'Supabase'],
+    note: 'The model learns from asking prices in online listings, not official appraisals. It only covers the Jabodetabek area.',
+    stack: [
+      'Python', 'pandas', 'XGBoost', 'Optuna', 'scikit-learn', 'SHAP', 'OpenStreetMap', 'Google Colab',
+      'Flask', 'Gunicorn', 'pytest', 'Railway', 'Next.js', 'Supabase', 'Vercel',
+    ],
   },
 
   yudhistira: {
     kicker: 'Case study · Personal project',
     summary:
-      'A real-time payment fraud engine that scores every transaction as it streams in, decides approve, review or block based on what each mistake actually costs, and explains each case to analysts.',
+      'Yudhistira is a real-time fraud detection engine that decides ALLOW, REVIEW or BLOCK for each payment based on expected cost. I built it to practice end-to-end ML engineering, from the model to a live pipeline and the UI an analyst uses.',
     facts: [
-      { label: 'Built by', value: 'Solo', detail: 'End to end, from data to dashboard' },
-      { label: 'Data', value: 'PaySim → IEEE-CIS', detail: 'Synthetic mobile money, then real e-commerce transactions' },
-      { label: 'Goal', value: 'Production-style', detail: 'A system, not a notebook' },
-      { label: 'Status', value: 'Complete', detail: 'Code on GitHub' },
+      { label: 'Role', value: 'Solo developer', detail: 'Design, modeling, pipeline, API and web app' },
+      {
+        label: 'Data',
+        value: 'PaySim + IEEE-CIS',
+        detail: 'PaySim to build the pipeline, IEEE-CIS (590,540 transactions) to train and test the model',
+      },
+      { label: 'Model', value: 'XGBoost', detail: 'PR-AUC 0.668 on a time-ordered test split' },
+      { label: 'Status', value: 'Open source · working demo', detail: 'Runs locally with one command' },
     ],
     problem: {
       title: 'The problem.',
-      text: 'Fraud models are usually judged on accuracy, but a missed fraud and a blocked loyal customer cost very different amounts. And a score alone doesn’t help the analyst who has to make the final call.',
+      text: 'Letting fraud through costs money, and blocking a good customer costs money too. Most fraud models stop at a score, but a business needs a decision with a price attached.',
     },
-    approachIntro: 'Stream it, price it, explain it.',
+    approachIntro: 'Four steps took it from a model in a notebook to a system you can watch run.',
     approach: [
       {
-        title: 'Real-time pipeline',
-        text: 'Transactions flow through Kafka, features are served from Redis, and a FastAPI service scores each one — all containerized with Docker.',
+        title: 'Train a model that respects time',
+        text: 'I trained XGBoost on IEEE-CIS with a time-ordered 70/15/15 split, so the model never learns from the future. The final model reached a PR-AUC of 0.668 on 88,581 test transactions.',
       },
       {
-        title: 'Cost-aware decisions',
-        text: 'Instead of one fixed threshold, each transaction’s approve, review or block decision minimizes expected cost in dollars, scaled by the transaction amount.',
+        title: 'Decide with money, not a threshold',
+        text: 'For each payment the system estimates the cost of ALLOW, REVIEW and BLOCK, then picks the cheapest one. On the test set this cut fraud-related cost by 73.1% compared with no screening.',
       },
       {
-        title: 'Explained for analysts',
-        text: 'A React dashboard for investigators. When an analyst claims a case, a local LLM (Ollama) writes a plain-language summary. Experiments are tracked in MLflow.',
+        title: 'Make it real-time and resilient',
+        text: 'Transactions stream through Kafka, features come from Redis with Postgres as the source of truth, and a FastAPI service exposes results. Replaying the test set gave exactly the same decisions as offline evaluation ($142,915.43 on both sides), even with Redis shut down mid-replay.',
+      },
+      {
+        title: 'Explain every review case',
+        text: 'Each REVIEW case gets SHAP factors and a cost breakdown in a React work queue shared by human analysts and a bot. Cases are claimed atomically with leases, so two analysts never work the same case.',
       },
     ],
     table: {
-      title: 'What a wrong call costs.',
-      intro: 'The decision costs used for the IEEE-CIS phase.',
+      title: 'Can a local LLM write the case summary?',
+      intro:
+        'I tested 3 local LLMs on 20 review cases, using an automatic fact-checker plus my own reading. Too many summaries still had wrong facts, so the app uses a template that is always correct.',
       rows: [
-        ['Chargeback fee on a missed fraud', '$20'],
-        ['Merchant margin lost on a blocked sale', '30%'],
-        ['Customer who leaves after a false block', '$35'],
-        ['Holding a transaction for review', '$5'],
+        ['llama3.2:3b', '60% passed fact-checker · 4.0 s per summary'],
+        ['gemma3:4b', '85% passed · 6.1 s · 4 of 17 still wrong on human reading'],
+        ['qwen2.5:7b', '90% passed · 9.3 s · 7 of 18 still wrong on human reading'],
+        ['Decision', 'Template summaries by default; LLM kept as an opt-in experiment'],
       ],
     },
     learnings: {
       title: 'What I learned.',
       items: [
-        'Docker, Kafka, Redis and FastAPI were new to me — this project was where I learned to run ML as a service, not a script.',
-        'Pricing decisions in money makes trade-offs obvious to non-technical people in a way precision and recall never do.',
-        'On limited hardware, generating LLM summaries only when an analyst opens a case keeps the system fast.',
+        'A good score is not a decision. Putting a dollar cost on each action made the model useful to a business.',
+        'Test the system, not just the model. Matching offline and real-time results to the cent caught bugs that metrics alone would miss.',
+        'Evaluate an LLM like any other model. A fact-checker that “passes” is not proof of correctness, so I also read the outputs myself.',
+        'Fail loudly. Optional features may not break the main path, but their failures must still show up on the dashboard.',
       ],
     },
-    stack: ['Python', 'Kafka', 'Redis', 'FastAPI', 'Docker', 'MLflow', 'React', 'Ollama', 'PaySim', 'IEEE-CIS'],
+    note: 'This runs on a public dataset replayed as a stream, not on live bank traffic. The cost figures use my own assumed costs per decision and are for evaluation only.',
+    stack: [
+      'Python', 'XGBoost', 'SHAP', 'MLflow', 'Apache Kafka', 'Redis', 'PostgreSQL',
+      'FastAPI', 'React', 'TypeScript', 'Tailwind CSS', 'Streamlit', 'Ollama', 'Docker Compose',
+    ],
   },
 
   churn: {
